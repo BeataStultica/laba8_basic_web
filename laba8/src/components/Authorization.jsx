@@ -24,7 +24,6 @@ const Authorization = ({ submitForm }) => {
                                 value={values.username}
                                 onChange={handleChange}
                             />
-                            {errors.username && <p>{errors.username}</p>}
                         </div>
                         <div className={a['form-inputs']}>
                             <label className={a['form-label']}>Пароль</label>

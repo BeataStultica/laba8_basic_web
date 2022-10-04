@@ -1,0 +1,12 @@
+
+img {
+    height: auto;
+}
+.button_box{
+    display: flex;
+    flex-direction: row;
+}
+
+.add_file{
+    display: none;
+}

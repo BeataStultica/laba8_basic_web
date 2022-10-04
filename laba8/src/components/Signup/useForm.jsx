@@ -22,7 +22,6 @@ const useForm = (callback, validate) => {
     };
 
     const handleSubmit = (e) => {
-        console.log('--------');
         e.preventDefault();
         if (window.location.pathname !== '/registration') {
             fetch('http://192.168.56.1:3001/login', {
@@ -45,7 +44,7 @@ const useForm = (callback, validate) => {
                     console.log(response);
                     console.log('-=')
                     if (response.user.name === false) {
-                        alert('Неправильний логін або пароль');
+                        alert('Доступ заборонено');
                     } else {
                         console.log('ok')
                         window.location.pathname = '/'
@@ -74,8 +73,8 @@ const useForm = (callback, validate) => {
                 })
                 .then(function (response) {
                     console.log(response);
-                    if (response.user.name === false) {
-                        alert('Користувач вже існує');
+                    if (!response.user.name) {
+                        alert('Некоректні дані');
                     } else {
                         setIsSubmitting(true);
                         e.preventDefault();
@@ -92,6 +91,7 @@ const useForm = (callback, validate) => {
 
     useEffect(() => {
         if (Object.keys(errors).length === 0 && isSubmitting) {
+            console.log(callback)
             callback();
         }
     }, [callback, errors, isSubmitting]);

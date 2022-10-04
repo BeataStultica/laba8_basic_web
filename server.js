@@ -47,9 +47,7 @@ let on_server = []
 fastify.post('/login', async (request, reply) => {
     console.log(on_server)
     const { email, password } = request.body
-    //console.log(request.body)
-    //console.log(email)
-    //console.log(password)
+
     jsonReader('./users.json', (err, customer) => {
         if (err) {
             console.log('Error reading file:', err)
@@ -72,8 +70,8 @@ fastify.post('/login', async (request, reply) => {
             success=false;
         }
     });
-    reply.send({"user":{"name":email}})
-    //reply.redirect('/')
+    //reply.send({"user":{"name":email}})
+    reply.redirect('/')
 });
 
 fastify.post('/register', async (request, reply) => {
@@ -83,6 +81,7 @@ fastify.post('/register', async (request, reply) => {
             console.log('Error reading file:', err)
             return
         }
+        if (/\S+@\S+\.\S+/.test(email)) {
         request.session.authenticated = true
         request.session.user = { name: email };
         customer[email] = {"username":email,
@@ -95,7 +94,7 @@ fastify.post('/register', async (request, reply) => {
         "status":"user"};
         fs.writeFile('./users.json', JSON.stringify(customer), (err) => {
             if (err) console.log('Error writing file:', err)
-        })
+        })}
     });
     reply.redirect('/')
     

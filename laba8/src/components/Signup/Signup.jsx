@@ -49,7 +49,7 @@ const Signup = ({ submitForm }) => {
                         value={values.group}
                         onChange={handleChange}
                     />
-                    {errors.username && <p>{errors.username}</p>}
+
                 </div>
                 <div className={r['form-inputs']}>
                     <label className={r['form-label']}>Варіант</label>
@@ -61,7 +61,7 @@ const Signup = ({ submitForm }) => {
                         value={values.variant}
                         onChange={handleChange}
                     />
-                    {errors.username && <p>{errors.username}</p>}
+
                 </div>
                 <div className={r['form-inputs']}>
                     <label className={r['form-label']}>Телефон</label>
@@ -73,7 +73,7 @@ const Signup = ({ submitForm }) => {
                         value={values.tel}
                         onChange={handleChange}
                     />
-                    {errors.username && <p>{errors.username}</p>}
+
                 </div>
                 <div className={r['form-inputs']}>
                     <label className={r['form-label']}>Введіть пароль</label>
