@@ -22,6 +22,8 @@ const useForm = (callback, validate) => {
     };
 
     const handleSubmit = (e) => {
+        console.log('--------');
+        e.preventDefault();
         if (window.location.pathname !== '/registration') {
             fetch('http://192.168.56.1:3001/login', {
                 method: 'post',
@@ -49,7 +51,7 @@ const useForm = (callback, validate) => {
                         window.location.pathname = '/'
                     }
                 });
-        } else if (validate(values).length ===0){
+        } else {
             fetch('http://192.168.56.1:3001/register', {
                 method: 'post',
                 headers: {
@@ -89,10 +91,10 @@ const useForm = (callback, validate) => {
     };
 
     useEffect(() => {
-         if (Object.keys(errors).length === 0 && isSubmitting) {
-             callback();
-         }
-     }, [callback, errors, isSubmitting]);
+        if (Object.keys(errors).length === 0 && isSubmitting) {
+            callback();
+        }
+    }, [callback, errors, isSubmitting]);
 
     return { handleChange, handleSubmit, values, errors };
 };
